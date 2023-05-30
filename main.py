@@ -27,6 +27,7 @@ def your_function(url):
 
     urls = [os.getenv("URL"), os.getenv("URL2")]
     url = random.choice(urls)
+    print(f'url: {len(url)}')
     driver.get(url)
     time.sleep(random.randint(5,10))
 
@@ -55,9 +56,9 @@ if __name__ == '__main__':
     users = os.getenv("USERS")
     arguments = []
 
-    for i in range(0, 7):
-        for x in range(0, int(users)):
-            arguments.append(url)
+    #for i in range(0, 7):
+    for x in range(0, int(users)):
+        arguments.append(url)
 
     pool = multiprocessing.Pool()
     pool.map(your_function, arguments)
