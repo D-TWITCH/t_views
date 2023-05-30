@@ -50,8 +50,6 @@ jobs:
           driver.get("http://github.com/")
           print ('Page title is ' + driver.title)
           EOF
-
-          python3 main.py
       
       - name: Run main
         id: main1
