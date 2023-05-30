@@ -31,6 +31,28 @@ jobs:
           sed -i "s|^URL=.*|URL=\"${{ secrets.URL }}\"|" ${{ github.workspace }}/.env
           sed -i "s|^URL2=.*|URL2=\"${{ secrets.URL2 }}\"|" ${{ github.workspace }}/.env
 
+      - name: Install Selenium
+        run: |
+          sudo pip3 install selenium
+      - name: ChromeWebDriver
+        run: |
+          cat <<EOF >> test.py
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          options = Options()
+          options.add_argument("--headless")
+          options.add_argument('--no-sandbox')
+          options.add_argument('--disable-gpu')
+          options.add_argument('--disable-dev-shm-usage')
+          options.add_argument('disable-infobars')
+          options.add_argument("--disable-extensions")
+          driver = webdriver.Chrome(chrome_options=options, executable_path='/usr/bin/chromedriver')
+          driver.get("http://github.com/")
+          print ('Page title is ' + driver.title)
+          EOF
+
+          python3 main.py
+      
       - name: Run main
         id: main1
         run: pipenv run python main.py
