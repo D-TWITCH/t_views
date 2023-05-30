@@ -3,14 +3,28 @@ import random
 import multiprocessing
 import time
 from selenium import webdriver
-from chromedriver import ChromeDriver
+#from chromedriver import ChromeDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 
 
 def your_function(url):
-    driver = ChromeDriver()
+
+    options = Options()
+    options.add_argument('--no_sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
+    options.add_argument("start-maximized")
+    options.addArguments("disable-infobars")
+
+    driver = webdriver.Chrome(options=options)
+    driver.implicitly_wait(10)
+    driver.maximize_window()
+
+
     urls = [os.getenv("URL"), os.getenv("URL2")]
     url = random.choice(urls)
     driver.get(url)
