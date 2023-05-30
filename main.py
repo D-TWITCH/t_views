@@ -18,7 +18,7 @@ def your_function(url):
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument("start-maximized")
-    options.addArguments("disable-infobars")
+    options.add_argument("disable-infobars")
 
     driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(10)
