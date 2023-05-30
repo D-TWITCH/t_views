@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 def your_function(url):
-    driver = webdriver.Chrome(options=chromedriver.ChromeDriver)
+    driver = ChromeDriver()
     urls = [os.getenv("URL"), os.getenv("URL2")]
     url = random.choice(urls)
     driver.get(url)
