@@ -3,7 +3,7 @@ import random
 import multiprocessing
 import time
 from selenium import webdriver
-import chromedriver
+from chromedriver import ChromeDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
